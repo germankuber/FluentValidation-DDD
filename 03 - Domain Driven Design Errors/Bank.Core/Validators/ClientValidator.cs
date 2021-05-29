@@ -4,7 +4,6 @@ namespace Bank.Core.Validators
 {
     public class ClientValidator : AbstractValidator<Client>
     {
-   
         public ClientValidator()
         {
             RuleFor(client => client.Name)
@@ -23,11 +22,7 @@ namespace Bank.Core.Validators
                     .NotNull()
                     .SetValidator(new PhoneValidator());
             });
-            When(x => x.Phone == null, () =>
-            {
-                RuleFor(x => x.Email).NotNull();
-            });
-
+            When(x => x.Phone == null, () => { RuleFor(x => x.Email).NotNull(); });
         }
     }
 }

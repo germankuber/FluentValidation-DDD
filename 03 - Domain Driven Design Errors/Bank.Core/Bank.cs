@@ -1,24 +1,23 @@
-﻿
-using CSharpFunctionalExtensions;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bank.Core.Validators;
+using CSharpFunctionalExtensions;
 using FluentValidation;
 
 namespace Bank.Core
 {
     public class Bank : Entity
     {
-        public List<Account> Accounts { get; }
-
         public Bank(List<Account> accounts)
         {
             Accounts = accounts;
             new BankValidator().Validate(this,
                 options => options.ThrowOnFailures());
         }
+
+        public List<Account> Accounts { get; }
+
         public void CreateAccount(Client owner)
         {
             if (Accounts.Count(x => x.Owner.Id == owner.Id) > 2)
@@ -26,6 +25,5 @@ namespace Bank.Core
 
             Accounts.Add(new Account(owner));
         }
-
     }
 }

@@ -8,7 +8,6 @@ namespace Bank.UnitTests
         [Fact]
         public void Throw_Exceptions()
         {
-
             var phone = Phone.Create("");
         }
     }
